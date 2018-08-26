@@ -1,0 +1,116 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*===========================================================
+            Universal
+===========================================================*/
+
+html {
+  font-size: 10px;
+}
+
+body {
+  padding-top: 70px;
+}
+
+.center {
+  text-align: center;
+}
+
+
+/*===========================================================
+            Typography
+===========================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 40px 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin: 40px 0;
+  text-align: center;
+}
+
+p {
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+
+/*===========================================================
+            Home
+===========================================================*/
+
+.home-container {
+  margin: 0 auto;
+  width: 455px;
+}
+
+div.banner {
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.banner img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*===========================================================
+            Header
+===========================================================*/
+
+#logo {
+  float: left;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  padding-top: 7px;
+}
+
+#logo:hover {
+  text-decoration: none;
+}
+
+nav {
+  background-color: #59BFE0;
+}
+
+header.navbar-fixed-top {
+  border: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #555;
+}
+
+/*===========================================================
+            Footer
+===========================================================*/
+
+footer {
+  margin-top: 60px;
+  padding: 25px 0;
+  background-color: #eee;
+}
+
+footer p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
