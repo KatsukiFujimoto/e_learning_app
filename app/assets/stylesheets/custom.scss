@@ -2,6 +2,17 @@
 @import "bootstrap";
 
 /*===========================================================
+            Mixins, Variables, etc
+===========================================================*/
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/*===========================================================
             Universal
 ===========================================================*/
 
@@ -28,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3rem;
-  margin: 40px 0;
+  // margin: 40px 0;
   text-align: center;
 }
 
@@ -49,7 +60,7 @@ p {
 ===========================================================*/
 
 .home-container {
-  margin: 0 auto;
+  margin: 50px auto 0;
   width: 455px;
 }
 
@@ -61,7 +72,7 @@ div.banner {
 div.banner img {
   max-width: 100%;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 }
 
 
@@ -119,3 +130,57 @@ footer p {
   font-size: 1.2rem;
 }
 
+
+/*===========================================================
+            Forms
+===========================================================*/
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box-sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+div.col-md-4 {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+div.col-md-4 input {
+  border-radius: 5px;
+}
+
+div.form-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+div.form {
+  margin-top: 50px;
+}
+
+input.btn {
+  background-color: #44BDDC !important;
+  border: none;
+}
+
+#error_explanaton {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
