@@ -184,3 +184,20 @@ input.btn {
     color: $state-danger-text;
   }
 }
+
+.chackbox {
+  margin-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  span {
+    margin-left: 10px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
