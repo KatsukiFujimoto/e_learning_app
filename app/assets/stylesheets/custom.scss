@@ -258,3 +258,67 @@ input.btn {
 .users.follow {
   padding: 0;
 }
+
+
+/*===========================================================
+            AdminTable
+===========================================================*/
+
+#categories {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#categories td, #categories th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#categories tbody tr:nth-child(odd) { background-color: #f2f2f2; }
+
+#categories tr:hover { background-color: #ddd !important; }
+
+#categories th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #44BDDC;
+  color: white;
+}
+
+#categories tr {
+  height: auto;
+}
+
+
+/*===========================================================
+            Categories
+===========================================================*/
+
+div.category-container {
+  margin: 0 auto 30px;
+  padding: 30px;
+  width: 70%;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ddd;
+}
+
+div.category-container > p {
+  text-align: center;
+}
+
+.start-btn {
+  display: block;
+  width: 100px;
+  margin: 40px auto 20px;
+  background-color: #44BDDC;
+  color: white;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+.start-btn:hover {
+  text-decoration: none;
+}

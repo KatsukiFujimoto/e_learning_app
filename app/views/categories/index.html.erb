@@ -1,0 +1,34 @@
+<h1>All Categories</h1>
+<div class="container">
+  <%= will_paginate @categories %>
+  
+  <% if current_user.admin? %>
+    <table id="categories">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= render @categories %>
+      </tbody>
+    </table>
+    <%= will_paginate @categories %>
+    <br>
+    
+    <%= link_to 'New Category', new_category_path %>
+  <% else %>
+    
+    <% @categories.each do |category| %>
+    <div class="category-container">
+      <h2><%= link_to category.title, category_path(category) %></h2>
+      <p><%= category.description %></p>
+      <%= link_to "Start", '#', class: "start-btn" %>
+    </div>
+    <% end %>
+  <% end %>
+
+</div>

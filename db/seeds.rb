@@ -25,6 +25,12 @@ User.create!(name: "chandler",
               password_confirmation: password)
 end
 
+# カテゴリー
+100.times do
+  title = Faker::Lorem.word.capitalize
+  content = Faker::Lorem.paragraph(2)
+  User.first.categories.create!(title: title, description: content)
+end
 
 
 # リレーションシップ
