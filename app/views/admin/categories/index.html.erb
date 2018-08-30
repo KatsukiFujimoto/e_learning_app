@@ -1,0 +1,21 @@
+<h1>All Categories</h1>
+<div class="container">
+  <%= will_paginate @categories %>
+  <table id="categories">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3">Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <%= render @categories %>
+    </tbody>
+  </table>
+  <%= will_paginate @categories %>
+  <br>
+  
+  <%= link_to 'New Category', new_admin_category_path %>
+</div>

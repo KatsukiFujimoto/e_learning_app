@@ -1,10 +1,5 @@
-<tr>
-  <td><%= link_to category.title, category_path(category) %></td>
-  <td><%= category.description %></td>
-<% if current_user.admin? %>
-  <td><%= link_to "Add word", '#' %></td>
-  <td><%= link_to "Edit", edit_category_path(category) %></td>
-  <td><%= link_to "Delete", category, method: :delete,
-    data: { confirm: 'Are you sure?' } %></td>
-<% end %>
-</tr>
+<div class="category-container">
+  <h2><%= link_to category.title, category_path(category) %></h2>
+  <p><%= category.description %></p>
+  <%= link_to "Start", '#', class: "start-btn" %>
+</div>
