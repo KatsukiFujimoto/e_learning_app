@@ -1,6 +1,6 @@
-<h1>Edit the category</h1>
+<h1>Create a new Category</h1>
 <div class="category-container">
-<%= form_for(@category, url: admin_category_path) do |f| %>
+<%= form_for(@category, url: admin_categories_path) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
   <div class="field">
@@ -14,7 +14,7 @@
   </div>
   
   <div class="actions">
-    <%= f.submit 'Update', class: "btn btn-primary" %>
+    <%= f.submit 'Create', class: "btn btn-primary" %>
   </div>
-<% end %>
+<% end %>    
 </div>

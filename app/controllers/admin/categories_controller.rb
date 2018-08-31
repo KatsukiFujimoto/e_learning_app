@@ -11,6 +11,13 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def create
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:success] = "Created a new category"
+      redirect_to admin_categories_url
+    else
+      render 'new'
+    end
   end
   
   def edit
@@ -18,9 +25,24 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(category_params)
+      flash[:success] = "Category updated"
+      redirect_to admin_categories_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    Category.find(params[:id]).destroy
+    flash[:success] = "Category deleted"
+    redirect_to admin_categories_url
   end
+  
+  private
+  
+    def category_params
+      params.require(:category).permit(:title, :description)
+    end
 end
