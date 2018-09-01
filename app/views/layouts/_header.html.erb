@@ -6,7 +6,8 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
           <% if current_user.admin? %>
-            <li><%= link_to "Adminpage", admin_categories_path %></li>
+            <li><%= link_to "AdminUsers", admin_users_path %></li>
+            <li><%= link_to "AdminCategories", admin_categories_path %></li>
           <% end %>
             <li><%= link_to "Dashboard", '#' %></li>
             <li><%= link_to "Categories", categories_path %></li>

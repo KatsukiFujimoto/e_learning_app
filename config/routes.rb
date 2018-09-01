@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :users do
+  resources :users, except: [:destroy, :new, :create] do
     member do
       get :following, :followers
     end
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   namespace :admin do
     resources :categories
+    resources :users, only: [:index, :destroy, :update]
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

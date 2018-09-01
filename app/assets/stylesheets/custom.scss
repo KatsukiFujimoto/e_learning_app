@@ -261,7 +261,7 @@ input.btn {
 
 
 /*===========================================================
-            AdminTable
+            AdminCategories
 ===========================================================*/
 
 #categories {
@@ -288,6 +288,41 @@ input.btn {
 
 #categories tr {
   height: auto;
+}
+
+
+/*===========================================================
+            AdminUsers
+===========================================================*/
+
+#users {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#users td, #users th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#users tbody tr:nth-child(odd) { background-color: #f2f2f2; }
+
+#users tr:hover { background-color: #ddd !important; }
+
+#users th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #44BDDC;
+  color: white;
+}
+
+#users tr {
+  height: auto;
+}
+
+#users td#admin {
+  background-color: red;
 }
 
 
