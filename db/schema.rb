@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901070854) do
+ActiveRecord::Schema.define(version: 20180901071630) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20180901070854) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "word_answers", force: :cascade do |t|
+    t.string "content"
+    t.boolean "correct"
+    t.integer "word_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word_id"], name: "index_word_answers_on_word_id"
   end
 
   create_table "words", force: :cascade do |t|
