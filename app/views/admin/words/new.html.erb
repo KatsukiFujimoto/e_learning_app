@@ -1,0 +1,24 @@
+<h1>Create a word and 3 answers</h1>
+<div class="container">
+<%= form_for(@word, url: admin_category_words_path) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  
+  <%= f.fields_for :word_answers do |word_answer_fields| %>
+    <div class="field">
+      <%= word_answer_fields.label :content %>
+      <%= word_answer_fields.text_field :content %>
+    </div>
+    
+    <div class="field">
+      <%= word_answer_fields.label :correct %>
+      <%= word_answer_fields.check_box :correct, {}, true, false %>
+    </div>
+  <% end %>
+  <%= f.submit 'Create words and answers', class: "btn btn-primary" %>
+<% end %>
+</div>
