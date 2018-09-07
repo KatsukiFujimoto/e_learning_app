@@ -1,0 +1,23 @@
+<h1><%= @category.title %></h1>
+<p class="center"><%= @category.description %></p>
+<div class="container">
+  <%= will_paginate @words %>
+  <table id="words">
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Word Answers</th>
+        <th>Correct</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <%= render @words %>
+    </tbody>
+  </table>
+  <%= will_paginate @words %>
+  <br>
+  
+  <%= link_to 'New Word', new_admin_category_word_path(@category) %>
+</div>

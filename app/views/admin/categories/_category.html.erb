@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to category.title, category_path(category) %></td>
+  <td><%= link_to category.title, admin_category_words_path(category) %></td>
   <td><%= category.description %></td>
   <td><%= link_to "Add word", new_admin_category_word_path(category) %></td>
   <td><%= link_to "Edit", edit_admin_category_path(category) %></td>

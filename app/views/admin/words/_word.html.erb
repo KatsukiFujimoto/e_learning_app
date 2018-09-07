@@ -1,0 +1,31 @@
+<tr>
+  <td rowspan="3"><%= word.content %></td>
+  <td><%= word.word_answers.first.content %></td>
+<% if word.word_answers.first.correct == true %>
+  <td id="correct">〇</td>
+<% else %>
+  <td>✖</td>
+<% end %>
+  <td rowspan="3"><%= link_to "Edit", url_for(controller: :words, action: :edit,
+    id: word.id) %></td>
+  <td rowspan="3"><%= link_to "Delete", url_for(controller: :words, action: :destroy, id: word.id),
+    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<tr>
+  <td><%= word.word_answers.second.content %></td>
+<% if word.word_answers.second.correct == true %>
+  <td id="correct">〇</td>
+<% else %>
+  <td>✖</td>
+<% end %>
+</tr>
+<tr>
+  <td><%= word.word_answers.third.content %></td>
+<% if word.word_answers.third.correct == true %>
+  <td id="correct">〇</td>
+<% else %>
+  <td>✖</td>
+<% end %>
+</tr>
+
+

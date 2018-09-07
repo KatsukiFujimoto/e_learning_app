@@ -1,6 +1,6 @@
-<h1>Create a word and 3 answers</h1>
+<h1>Edit the word and the answers</h1>
 <div class="container">
-<%= form_for(@word, url: admin_category_words_path) do |f| %>
+<%= form_for(@word, url: admin_category_word_path) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
   <div class="field">
@@ -16,9 +16,9 @@
     
     <div class="field">
       <%= word_answer_fields.label :correct %>
-      <%= word_answer_fields.check_box :correct, {}, true, false %>
+      <%= word_answer_fields.check_box :correct, {}, "true", "false" %>
     </div>
   <% end %>
-  <%= f.submit 'Create the word and the answers', class: "btn btn-primary" %>
+  <%= f.submit 'Update the word and the answers', class: "btn btn-primary" %>
 <% end %>
 </div>
