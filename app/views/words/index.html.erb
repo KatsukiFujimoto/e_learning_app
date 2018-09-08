@@ -6,10 +6,6 @@
     <thead>
       <tr>
         <th>Word</th>
-        <th>Word Answers</th>
-        <th>Correct</th>
-        <th colspan="2">Action</th>
-      </tr>
     </thead>
     
     <tbody>
@@ -19,5 +15,5 @@
   <%= will_paginate @words %>
   <br />
   
-  <%= link_to 'New Word', new_admin_category_word_path(@category) %>
+  <%= link_to 'Back to the category lists', categories_path %>
 </div>
