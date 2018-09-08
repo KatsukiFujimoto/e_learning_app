@@ -25,19 +25,68 @@ User.create!(name: "chandler",
               password_confirmation: password)
 end
 
-# カテゴリー
-100.times do
-  title = Faker::Lorem.word.capitalize
-  content = Faker::Lorem.paragraph(2)
-  Category.create!(title: title, description: content)
-end
 
 
 # リレーションシップ
-
 users = User.all
 user  = users.first
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+
+# カテゴリー
+30.times do
+  title = Faker::Lorem.word.capitalize
+  content = Faker::Lorem.paragraph(2)
+  Category.create!(title: title, description: content)
+end
+
+
+# ワード&アンサー
+5.times do 
+  word_lists = Faker::Lorem.words(3)
+  word_content = word_lists[0]
+  answer_content0 = word_lists[0]
+  correctness0 = 'true'
+  answer_content1 = word_lists[1]
+  correctness1 = 'false'
+  answer_content2 = word_lists[2]
+  correctness2 = 'false'
+  params = { word: { content: word_content, word_answers_attributes: [ { content: answer_content0, correct: correctness0 },
+                                                                    { content: answer_content1, correct: correctness1 },
+                                                                    { content: answer_content2, correct: correctness2 } ] } }
+  Category.first.words.create(params[:word])
+end
+
+60.times do 
+  word_lists = Faker::Lorem.words(3)
+  word_content = word_lists[0]
+  answer_content0 = word_lists[1]
+  correctness0 = 'false'
+  answer_content1 = word_lists[0]
+  correctness1 = 'true'
+  answer_content2 = word_lists[2]
+  correctness2 = 'false'
+  params = { word: { content: word_content, word_answers_attributes: [ { content: answer_content0, correct: correctness0 },
+                                                                    { content: answer_content1, correct: correctness1 },
+                                                                    { content: answer_content2, correct: correctness2 } ] } }
+  Category.second.words.create(params[:word])
+end
+
+60.times do 
+  word_lists = Faker::Lorem.words(3)
+  word_content = word_lists[0]
+  answer_content0 = word_lists[2]
+  correctness0 = 'false'
+  answer_content1 = word_lists[1]
+  correctness1 = 'false'
+  answer_content2 = word_lists[0]
+  correctness2 = 'true'
+  params = { word: { content: word_content, word_answers_attributes: [ { content: answer_content0, correct: correctness0 },
+                                                                    { content: answer_content1, correct: correctness1 },
+                                                                    { content: answer_content2, correct: correctness2 } ] } }
+  Category.third.words.create(params[:word])
+end
+
