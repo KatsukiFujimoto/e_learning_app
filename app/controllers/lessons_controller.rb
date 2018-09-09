@@ -6,6 +6,8 @@ class LessonsController < ApplicationController
     if @lesson.save 
       redirect_to root_url
     else 
+      @categories = Category.paginate(page: params[:page])
+      flash.now[:danger] = "Sorry, you can not take the same cource twice"
       render 'categories/index'
     end 
   end 
