@@ -90,3 +90,20 @@ end
   Category.third.words.create(params[:word])
 end
 
+(4..30).each do |i|
+  5.times do 
+    word_lists = Faker::Lorem.words(3)
+    word_content = word_lists[0]
+    answer_content0 = word_lists[0]
+    correctness0 = 'true'
+    answer_content1 = word_lists[1]
+    correctness1 = 'false'
+    answer_content2 = word_lists[2]
+    correctness2 = 'false'
+    params = { word: { content: word_content, word_answers_attributes: [ { content: answer_content0, correct: correctness0 },
+                                                                      { content: answer_content1, correct: correctness1 },
+                                                                      { content: answer_content2, correct: correctness2 } ] } }
+    Category.find(i).words.create(params[:word])
+  end
+end
+

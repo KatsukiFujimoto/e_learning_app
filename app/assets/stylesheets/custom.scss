@@ -155,6 +155,16 @@ div.col-md-4 input {
   border-radius: 5px;
 }
 
+div.col-md-6 {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+div.col-md-6 input {
+  border-radius: 5px;
+}
+
 div.form-container {
   width: 80%;
   margin: 0 auto;
@@ -168,6 +178,10 @@ div.form {
 input.btn {
   background-color: #44BDDC !important;
   border: none;
+}
+
+input.btn:hover {
+  opacity: 0.8;
 }
 
 #error_explanaton {

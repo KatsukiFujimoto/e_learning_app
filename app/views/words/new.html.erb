@@ -1,0 +1,35 @@
+<h1><%= @category.title %></h1>
+<div class="container">
+
+  <h2><%= @word.content %></h2>
+  <p><span><%= @current_count %> out of <%= @count %></span></p>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    
+    <%= form_for(@lesson_word, url: lesson_words_path) do |f| %>
+      <%= f.hidden_field :word_id, value: @word.id %>
+      
+      <%= f.hidden_field :word_answer_id, value: @word_answer1.id %>
+      
+      <%= f.submit @word_answer1.content, class: 'btn btn-primary' %>
+    <% end %><br />
+    
+    <%= form_for(@lesson_word, url: lesson_words_path) do |f| %>
+      <%= f.hidden_field :word_id, value: @word.id %>
+      
+      <%= f.hidden_field :word_answer_id, value: @word_answer2.id %>
+      
+      <%= f.submit @word_answer2.content, class: 'btn btn-primary' %>
+    <% end %><br />
+    
+    <%= form_for(@lesson_word, url: lesson_words_path) do |f| %>
+      <%= f.hidden_field :word_id, value: @word.id %>
+      
+      <%= f.hidden_field :word_answer_id, value: @word_answer3.id %>
+      
+      <%= f.submit @word_answer3.content, class: 'btn btn-primary' %>
+    <% end %>
+    
+    </div>
+  </div>
+</div>
