@@ -1,5 +1,5 @@
 <div class="category-container">
-  <h2><%= link_to category.title, category_words_path(category) %></h2>
+  <h2><%= link_to category.title, category_path(category) %></h2>
   <p><%= category.description %></p>
   <%= form_for(@lesson, url: lessons_path) do |f| %>
     <%= f.hidden_field :category_id, value: category.id %>

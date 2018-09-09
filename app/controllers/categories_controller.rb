@@ -9,5 +9,6 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
+    @words = @category.words.paginate(page: params[:page])
   end
 end

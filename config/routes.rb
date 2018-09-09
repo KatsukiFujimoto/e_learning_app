@@ -12,9 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :categories, only: [:index, :show] do 
-    resources :words, only: [:index]
-  end
+  resources :categories, only: [:index, :show]
   resources :lessons
   namespace :admin do
     resources :users, only: [:index, :destroy, :update]

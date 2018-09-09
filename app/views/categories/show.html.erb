@@ -1,2 +1,18 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h1><%= @category.title %></h1>
+<p class="center"><%= @category.description %></p>
+<div class="container">
+  <%= will_paginate @words %>
+  <table id="words">
+    <thead>
+      <tr>
+        <th>Word</th>
+    </thead>
+    
+    <tbody>
+      <%= render @words %>
+    </tbody>
+  </table>
+  <%= will_paginate @words %>
+  <br />
+  
+  <%= link_to 'Back to the category lists', categories_path %>
