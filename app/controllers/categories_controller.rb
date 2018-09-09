@@ -3,6 +3,8 @@ class CategoriesController < ApplicationController
   
   def index
     @categories = Category.paginate(page: params[:page])
+    @user = current_user
+    @lesson = @user.lessons.build
   end
   
   def show
