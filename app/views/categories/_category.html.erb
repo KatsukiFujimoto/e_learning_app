@@ -1,3 +1,10 @@
+<% @existing_lesson = Lesson.find_by(user_id: current_user.id, category_id: category.id) %>
+<% if @existing_lesson %>
+  <% @count = @existing_lesson.category.words.count %>
+  <% @answer_count = @existing_lesson.lesson_words.count %>
+<% end %>
+
+
 <div class="category-container">
   <h2><%= link_to category.title, category_path(category) %></h2>
   <p><%= category.description %></p>
@@ -6,7 +13,12 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     
     <%= f.hidden_field :category_id, value: category.id %>
-    
-    <%= f.submit 'LEARN', class: "start-btn" %>
+    <% if @existing_lesson && @count != @answer_count %>
+      <%= f.submit 'Start from where you left last time', class: "middle-btn" %>
+    <% elsif @existing_lesson %>
+      <%= f.submit 'Result', class: "result-btn" %>
+    <% else %>
+      <%= f.submit 'Learn', class: "start-btn" %>
+    <% end %>
   <% end %>
 </div>

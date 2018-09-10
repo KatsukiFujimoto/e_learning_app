@@ -26,7 +26,7 @@ class WordsController < ApplicationController
       @word_answer3 = @word_answers.third
       @lesson_word = @lesson.lesson_words.build
     else
-      redirect_to root_url
+      redirect_to lesson_path(@lesson)
     end 
   end
   

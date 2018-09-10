@@ -1,0 +1,21 @@
+<% word = lesson_word.word.content %>
+<% correct_answer = lesson_word.word.word_answers.find_by(correct: true).content %>
+<% your_answer = lesson_word.word_answer.content %>
+<% correctness = lesson_word.word_answer.correct %>
+
+
+<% if correctness == true %>
+<tr>
+  <td><%= word %></td>
+  <td><%= correct_answer %></td>
+  <td><%= your_answer %></td>
+  <td>〇</td>
+</tr>
+<% else %>
+<tr style="background-color: rgba(255, 0, 0, 0.1);">
+  <td><%= word %></td>
+  <td><%= correct_answer %></td>
+  <td><%= your_answer %></td>
+  <td>✖</td>
+</tr>
+<% end %>
