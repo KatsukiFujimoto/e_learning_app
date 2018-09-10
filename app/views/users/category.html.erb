@@ -1,0 +1,17 @@
+<h1>The categories you've learned</h1>
+<div class="container">
+  <%#= will_paginate @categories %>
+  <table id="categories">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <%= render partial: 'users/category', collection: @categories %>
+    </tbody>
+  </table>
+  <%#= will_paginate @categories %>
+</div>

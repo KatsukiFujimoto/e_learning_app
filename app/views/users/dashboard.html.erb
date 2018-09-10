@@ -4,14 +4,16 @@
       <h1 id="user_show">
         <p><%= gravatar_for @user %></p>
         <p class="user-name"><%= @user.name %></p>
+        <p><%= @user.email %></p>
+        <%= link_to "Update your profile", edit_user_path(@user), style: "font-size: 2rem" %>
       </h1>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
     <section>
-      <p class="categories-learned"><%= pluralize(@category_count, "category") %> learned</p>
-      <p class="words-learned"><%= pluralize(@word_count, "word") %> learned</p>
+      <a href="/learned-categories" class="categories-learned"><%= pluralize(@category_count, "category") %> learned</a>
+      <a href="/learned-words" class="words-learned"><%= pluralize(@word_count, "word") %> learned</a>
     </section>
   </aside>
   <div class="col-md-8">

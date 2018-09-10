@@ -237,7 +237,7 @@ input.btn:hover {
 
 .stats {
   overflow: auto;
-  margin-top: 0;
+  margin: 0 auto 30px;
   padding: 0;
   a {
     float: left;
@@ -273,6 +273,33 @@ input.btn:hover {
   padding: 0;
 }
 
+h1#user_show {
+  text-align: left;
+}
+
+a.words-learned {
+  display: block;
+  margin-top: 10px;
+  font-size: 2rem;
+}
+
+a.categories-learned {
+  display: block;
+  margin-top: 10px;
+  font-size: 2rem;
+}
+
+p.user-name {
+  font-size: 3rem;
+}
+
+section.user_info {
+  margin-bottom: 40px;
+}
+
+aside.user-sidebar {
+  background-color: #eee;
+}
 
 /*===========================================================
             AdminCategories
@@ -374,6 +401,43 @@ input.btn:hover {
 #words td#correct {
   background-color: rgba(255, 0, 0, 0.3);
 }
+
+
+
+/*===========================================================
+            User Words-Answers
+===========================================================*/
+
+#user-words {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+}
+
+#user-words td, #user-words th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+#user-words tr:hover { background-color: #ddd !important; }
+
+#user-words th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #44BDDC;
+  color: white;
+}
+
+#user-words tr {
+  height: auto;
+}
+
+#user-words td#correct {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
 
 
 

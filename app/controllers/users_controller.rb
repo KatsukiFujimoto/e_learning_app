@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                                        :following, :followers]
+                                        :following, :followers, :dashboard,
+                                        :category, :word]
   before_action :correct_user, only: [:edit, :update]
 
   def index 
@@ -9,7 +10,39 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @word_count = @user.lesson_words.count
+    @lessons = @user.lessons
+    @finished_lessons = @lessons.select do |lesson|
+      lesson.category.words.count == lesson.lesson_words.count 
+    end 
+    @category_count = @finished_lessons.count
   end
+  
+  def dashboard
+    @user = current_user
+    @word_count = @user.lesson_words.count
+    @lessons = @user.lessons
+    @finished_lessons = @lessons.select do |lesson|
+      lesson.category.words.count == lesson.lesson_words.count 
+    end 
+    @category_count = @finished_lessons.count
+  end 
+  
+  def category 
+    @user = current_user
+    @lessons = @user.lessons 
+    @finished_lessons = @lessons.select do |lesson|
+      lesson.category.words.count == lesson.lesson_words.count 
+    end 
+    @categories = @finished_lessons.map do |lesson|
+      lesson.category 
+    end 
+  end 
+  
+  def word 
+    @user = current_user 
+    @lesson_words = @user.lesson_words
+  end 
   
   def new
     @user = User.new

@@ -1,6 +1,4 @@
-<h1><%= @category.title %></h1>
-<p class="center"><%= @category.description %></p>
-<p><span>Result: <%= @correct_count %> of <%= @count %></span></p>
+<h1>The words you've learned</h1>
 <div class="container">
   <%#= will_paginate @words %>
   <table id="user-words">
@@ -9,7 +7,7 @@
         <th>Word</th>
         <th>Correct Answer</th>
         <th>Your Answer</th>
-        <th>Correctness</th>
+        <th>correctness</th>
       </tr>
     </thead>
     
@@ -18,5 +16,4 @@
     </tbody>
   </table>
   <%#= will_paginate @words %>
-  <br />
 </div>

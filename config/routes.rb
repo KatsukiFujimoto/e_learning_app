@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/dashboard', to: 'users#dashboard'
+  get '/learned-categories', to: 'users#category'
+  get '/learned-words', to: 'users#word'
   resources :users, except: [:destroy, :new, :create] do
     member do
       get :following, :followers

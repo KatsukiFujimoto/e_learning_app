@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :lessons, dependent: :destroy 
+  has_many :lesson_words, through: :lessons
+  has_many :categories, through: :lessons
   has_many :active_relationships, class_name: "Relationship",
                                 foreign_key: "follower_id",
                                 dependent: :destroy
