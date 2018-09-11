@@ -16,5 +16,11 @@
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
+    <%= will_paginate @activities %>
+    <div class="activity-container">
+      <h2 class="margin-top-zero">Activities</h2>
+      <%= render partial: 'users/activity', collection: @activities %>
+    </div>
+    <%= will_paginate @activities %>
   </div>
 </div>

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :activities, dependent: :destroy
+  has_one :passive_user, through: :activities, source: :passive_user
   has_many :lessons, dependent: :destroy 
   has_many :lesson_words, through: :lessons
   has_many :categories, through: :lessons
@@ -55,11 +57,13 @@ class User < ApplicationRecord
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user
+    self.activities.create(action_type: "followed", passive_user_id: other_user.id)
   end
   
   # ユーザーをフォロー解除する
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
+    self.activities.create(action_type: "unfollowed", passive_user_id: other_user.id)
   end
   
   # 現在のユーザーがフォローしてたらtrueを返す

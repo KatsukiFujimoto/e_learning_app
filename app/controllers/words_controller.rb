@@ -26,6 +26,11 @@ class WordsController < ApplicationController
       @word_answer3 = @word_answers.third
       @lesson_word = @lesson.lesson_words.build
     else
+      @correct_count = @lesson.word_answers.where("correct = ?", true).count
+      current_user.activities.create!(action_type: "learned",
+                             count: @count,
+                             answer_count: @correct_count,
+                             category_id: @category.id)
       redirect_to lesson_path(@lesson)
     end 
   end

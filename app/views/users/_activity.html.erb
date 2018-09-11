@@ -1,0 +1,48 @@
+<div class="one-activity">
+  <%= gravatar_for @user %>
+<% if activity.action_type == "followed" %>
+  <% if current_user == @user %>
+    <% if @user.id == activity.user.id %>
+      You followed <%= activity.passive_user.name %>
+      <%= time_ago_in_words(activity.created_at) %>
+    <% else %>
+      <%= activity.user.name %> followed you
+      <%= time_ago_in_words(activity.created_at) %>
+    <% end %>
+  <% else %>
+    <% if @user.id == activity.user.id %>
+      <%= @user.name %> followed <%= activity.passive_user.name %>
+      <%= time_ago_in_words(activity.created_at) %>
+    <% else %>
+      <%= activity.user.name %> followed you
+      <%= time_ago_in_words(activity.created_at) %>
+    <% end %>
+  <% end %>
+<% elsif activity.action_type == "unfollowed" %>
+  <% if current_user == @user %>
+    <% if @user.id == activity.user.id %>
+      You unfollowed <%= activity.passive_user.name %>
+      <%= time_ago_in_words(activity.created_at) %>
+    <% else %>
+      <%= activity.user.name %> unfollowed you
+      <%= time_ago_in_words(activity.created_at) %>
+    <% end %>
+  <% else %>
+    <% if @user.id == activity.user.id %>
+      <%= @user.name %> unfollowed <%= activity.passive_user.name %>
+      <%= time_ago_in_words(activity.created_at) %>
+    <% else %>
+      <%= activity.user.name %> unfollowed you
+      <%= time_ago_in_words(activity.created_at) %>
+    <% end %>
+  <% end %>
+<% else %>
+  <% if current_user == @user %>
+    You learned <%= activity.answer_count %> of <%= activity.count %> in <%= activity.category.title %>
+    <%= time_ago_in_words(activity.created_at) %>
+  <% else %>
+    <%= @user.name %> learned <%= activity.answer_count %> of <%= activity.count %> in <%= activity.category.title %>
+    <%= time_ago_in_words(activity.created_at) %>
+  <% end %>
+<% end %>
+</div>
