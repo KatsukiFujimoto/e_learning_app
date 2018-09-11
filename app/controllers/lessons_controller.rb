@@ -26,7 +26,7 @@ class LessonsController < ApplicationController
     @category = @lesson.category
     @words = @category.words.paginate(page: params[:page])
     @count = @words.count 
-    @lesson_words = @lesson.lesson_words
+    @lesson_words = @lesson.lesson_words.paginate(page: params[:page])
     @correct_count = @lesson.word_answers.where("correct = ?", true).count
   end 
   

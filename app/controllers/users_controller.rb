@@ -34,14 +34,15 @@ class UsersController < ApplicationController
     @finished_lessons = @lessons.select do |lesson|
       lesson.category.words.count == lesson.lesson_words.count 
     end 
-    @categories = @finished_lessons.map do |lesson|
+    @pre_categories = @finished_lessons.map do |lesson|
       lesson.category 
     end 
+    @categories = @pre_categories.paginate(page: params[:page])
   end 
   
   def word 
     @user = current_user 
-    @lesson_words = @user.lesson_words
+    @lesson_words = @user.lesson_words.paginate(page: params[:page])
   end 
   
   def new
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      redirect_to dashboard_path
     else
       render 'new'
     end

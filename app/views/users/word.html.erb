@@ -1,6 +1,6 @@
 <h1>The words you've learned</h1>
 <div class="container">
-  <%#= will_paginate @words %>
+  <%= will_paginate @lesson_words %>
   <table id="user-words">
     <thead>
       <tr>
@@ -15,5 +15,5 @@
       <%= render partial: 'lessons/lesson_word', collection: @lesson_words %>
     </tbody>
   </table>
-  <%#= will_paginate @words %>
+  <%= will_paginate @lesson_words %>
 </div>

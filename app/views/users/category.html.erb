@@ -1,6 +1,6 @@
 <h1>The categories you've learned</h1>
 <div class="container">
-  <%#= will_paginate @categories %>
+  <%= will_paginate @categories %>
   <table id="categories">
     <thead>
       <tr>
@@ -13,5 +13,5 @@
       <%= render partial: 'users/category', collection: @categories %>
     </tbody>
   </table>
-  <%#= will_paginate @categories %>
+  <%= will_paginate @categories %>
 </div>

@@ -2,7 +2,7 @@
 <p class="center"><%= @category.description %></p>
 <p><span>Result: <%= @correct_count %> of <%= @count %></span></p>
 <div class="container">
-  <%#= will_paginate @words %>
+  <%= will_paginate @words %>
   <table id="user-words">
     <thead>
       <tr>
@@ -17,6 +17,6 @@
       <%= render partial: 'lessons/lesson_word', collection: @lesson_words %>
     </tbody>
   </table>
-  <%#= will_paginate @words %>
+  <%= will_paginate @words %>
   <br />
 </div>
