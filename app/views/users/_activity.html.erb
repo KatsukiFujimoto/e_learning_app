@@ -32,7 +32,7 @@
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    
    <%#= 自分がそのページのユーザーをfollowした場合 %>
-   <% elsif @user = activity.passive_user && current_user == activity.user %> 
+   <% elsif @user == activity.passive_user && current_user == activity.user %> 
      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was followed by <%= link_to 'you', user_path(current_user) %>
      <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    
@@ -74,7 +74,7 @@
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
       
     <%#= 自分がそのページのユーザーをunfollowした場合 %>
-    <% elsif @user = activity.passive_user && current_user == activity.user %> 
+    <% elsif @user == activity.passive_user && current_user == activity.user %> 
      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was unfollowed by <%= link_to 'you', user_path(current_user) %>
      <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    

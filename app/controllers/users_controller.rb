@@ -16,8 +16,9 @@ class UsersController < ApplicationController
       lesson.category.words.count == lesson.lesson_words.count 
     end 
     @category_count = @finished_lessons.count
-    @pre_activities = @user.activities + Activity.where("passive_user_id = ?", @user.id)
-    @activities = @pre_activities.paginate(page: params[:page])
+    #@pre_activities = @user.activities + Activity.where("passive_user_id = ?", @user.id)
+    @activities = @user.show_activity.paginate(page: params[:page])
+    #@activities = @pre_activities.paginate(page: params[:page])
   end
   
   def dashboard

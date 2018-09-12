@@ -73,11 +73,20 @@ class User < ApplicationRecord
   
   def activity_feed 
     following_ids = "SELECT followed_id FROM relationships
-                    WHERE follower_id = :user_id"
-    active_activity = Activity.where("user_id IN (#{following_ids})
-                  OR user_id = :user_id", user_id: self.id)
-    passive_activity = Activity.where("passive_user_id IN (#{following_ids})
-                  OR passive_user_id = :user_id", user_id: self.id)
-    active_activity + passive_activity
+                     WHERE follower_id = :user_id"
+    # active_activity = Activity.where("user_id IN (#{following_ids})
+    #               OR user_id = :user_id", user_id: self.id)
+    # passive_activity = Activity.where("passive_user_id IN (#{following_ids})
+    #               OR passive_user_id = :user_id", user_id: self.id)
+    # active_activity + passive_activity
+    
+    Activity.where("user_id IN (#{following_ids}) OR user_id = :user_id
+                    OR passive_user_id IN (#{following_ids}) OR passive_user_id = :user_id",
+                    user_id: self.id)
+  end
+  
+  def show_activity 
+    Activity.where("user_id = :user_id OR passive_user_id = :user_id",
+            user_id: self.id)
   end
 end
