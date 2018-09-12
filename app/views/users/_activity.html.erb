@@ -1,34 +1,44 @@
 <div class="one-activity">
-  <%= gravatar_for @user %>
+  <%= gravatar_for activity.user %>
   
-<%#= Activityモデルのaction_typeが"followed"の場合 %>
+<%#= アクションが"followed"の場合 %>
 <% if activity.action_type == "followed" %>
 
-  <%#= ユーザーが自分のページを見ている場合 %>
+  <%#= 自分で自分のページを見ている場合 %>
   <% if current_user == @user %>
   
-    <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
-    <% if current_user.id == activity.user_id %>
+    <%#= 自分が他のユーザーをfollowした場合 %>
+    <% if current_user == activity.user %>
       <%= link_to 'You', user_path(current_user) %> followed <%= link_to activity.passive_user.name, user_path(activity.passive_user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     
-    <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+    <%#= 他のユーザーが自分をfollowした場合 %>
     <% else %>
       <%= link_to 'You', user_path(current_user) %> were followed by <%= link_to activity.user.name, user_path(activity.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     <% end %>
  
-  <%#= ユーザーが他のユーザーのページを見ている場合 %>
+  <%#= 自分が他のユーザーのページを見ている場合 %>
   <% else %>
   
-    <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
-    <% if current_user.id == activity.user_id %>
-      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was followed by <%= link_to 'you', user_path(current_user) %><br />
+    <%#= そのページのユーザーが自分をfollowした場合 %>
+    <% if @user == activity.user && current_user == activity.passive_user %>
+      <%= link_to activity.user.name, user_path(activity.user) %> followed <%= link_to 'you', user_path(current_user) %>
+      <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
+  
+    <%#= そのページのユーザーが他のユーザーをfollowした場合 %>
+    <% elsif @user == activity.user %>
+      <%= link_to activity.user.name, user_path(activity.user) %> followed <%= link_to activity.passive_user.name, user_path(activity.passive_user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    
-    <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+   <%#= 自分がそのページのユーザーをfollowした場合 %>
+   <% elsif @user = activity.passive_user && current_user == activity.user %> 
+     <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was followed by <%= link_to 'you', user_path(current_user) %>
+     <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
+   
+    <%#= 他のユーザーがそのページのユーザーをfollowした場合 %>
     <% else %>
-      <%= link_to activity.user.name, user_path(activity.user) %> followed <%= link_to 'You', user_path(current_user) %><br />
+      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was followed by <%= link_to activity.user.name, user_path(activity.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     <% end %>
   <% end %>
@@ -36,31 +46,41 @@
 <%#= Activityモデルのaction_typeが"unfollowed"の場合 %>
 <% elsif activity.action_type == "unfollowed" %>
  
-  <%#= ユーザーが自分のページを見ている場合 %>
+  <%#= 自分で自分のページを見ている場合 %>
   <% if current_user == @user %>
     
-    <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
-    <% if current_user.id == activity.user_id %>
+    <%#= 自分がが他のユーザーをunfollowした場合 %>
+    <% if current_user == activity.user %>
       <%= link_to 'You', user_path(current_user) %> unfollowed <%= link_to activity.passive_user.name, user_path(activity.passive_user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     
-    <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+    <%#= 他のユーザーが自分をunfollowした場合 %>
     <% else %>
       <%= link_to 'You', user_path(current_user) %> were unfollowed by <%= link_to activity.user.name, user_path(activity.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     <% end %>
 
-  <%#= ユーザーが他のユーザーのページを見ている場合 %>
+  <%#= 自分が他のユーザーのページを見ている場合 %>
   <% else %>
+  
+    <%#= そのページのユーザーが自分をunfollowした場合 %>
+    <% if @user == activity.user && current_user == activity.passive_user %>
+    <%= link_to activity.user.name, user_path(activity.user) %> unfollowed <%= link_to 'you', user_path(current_user) %>
+    <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    
-    <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
-    <% if current_user.id == activity.user_id %>
-      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was unfollowed by <%= link_to 'you', user_path(current_user) %><br />
+    <%#= そのページのユーザーが他のユーザーをunfollowした場合 %>
+    <% elsif @user == activity.user %>
+      <%= link_to activity.user.name, user_path(activity.user) %> unfollowed <%= link_to activity.passive_user.name, user_path(activity.passive_user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
+      
+    <%#= 自分がそのページのユーザーをunfollowした場合 %>
+    <% elsif @user = activity.passive_user && current_user == activity.user %> 
+     <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was unfollowed by <%= link_to 'you', user_path(current_user) %>
+     <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
    
-    <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+    <%#= 他のユーザーがそのページのユーザーをunfollowした場合 %>
     <% else %>
-      <%= link_to activity.user.name, user_path(activity.user) %> unfollowed <%= link_to 'You', user_path(current_user) %><br />
+      <%= link_to activity.passive_user.name, user_path(activity.passive_user) %> was unfollowed by <%= link_to activity.user.name, user_path(activity.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
     <% end %>
   <% end %>
@@ -68,12 +88,12 @@
 <%#= Activityモデルのaction_typeがその他、つまり"learned"の場合 %>
 <% else %>
  
-  <%#= ユーザーが自分のページを見ている場合 %>
+  <%#= 自分で自分のページを見ている場合 %>
   <% if current_user == @user %>
     <%= link_to 'You', user_path(@user) %> learned <%= activity.answer_count %> of <%= activity.count %> in <%= link_to activity.category.title, category_path(activity.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: current_user.id, category_id: activity.category_id)), class: "activity-result" %><br />
     <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
 
-  <%#= ユーザーが他のユーザーのページを見ている場合 %>
+  <%#= 自分が他のユーザーのページを見ている場合 %>
   <% else %>
     <%= link_to @user.name, user_path(@user) %> learned <%= activity.answer_count %> of <%= activity.count %> in <%= link_to activity.category.title, category_path(activity.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: @user.id, category_id: activity.category_id)), class: "activity-result" %><br />
     <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />

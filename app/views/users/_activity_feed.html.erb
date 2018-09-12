@@ -1,47 +1,47 @@
 <div class="one-activity">
-  <%= gravatar_for @user %>
+  <%= gravatar_for activity_feed.user %>
   
 <%#= 前提として、ユーザーは自分のダッシュボードしか見れない %>
 <%#= アクションが"followed"の場合 %>
 <% if activity_feed.action_type == "followed" %>
   
-  <%#= ユーザーが他のユーザー(フォロワー)をfollowした場合 %>
-  <% if current_user.id == activity_feed.user_id %>
+  <%#= 自分が他のユーザーをfollowした場合 %>
+  <% if current_user == activity_feed.user %>
     <%= link_to 'You', user_path(current_user) %> followed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %><br />
     <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
   
   <%#= フォロワーが誰かをfollowした場合 %>
   <% else %>
   
-    <%#= フォロワーがユーザーをfollowした場合 %>
-    <% if current_user.id == activity_feed.passive_user_id %>
+    <%#= フォロワーもしくは他のユーザーが自分をfollowした場合 %>
+    <% if current_user == activity_feed.passive_user %>
       <%= link_to 'You', user_path(current_user) %> were followed by <%= link_to activity_feed.user.name, user_path(activity_feed.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
       
-    <%#= フォロワーが誰かをfollowした場合 %>
+    <%#= フォロワーが他のユーザーもしくは他のユーザーがフォロワーをfollowした場合 %>
     <% else %>
       <%= link_to activity_feed.user.name, user_path(activity_feed.user) %> followed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %>
       <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
     <% end %>
   <% end %>
 
-<%#= アクションがが"unfollowed"の場合 %>
+<%#= アクションが"unfollowed"の場合 %>
 <% elsif activity_feed.action_type == "unfollowed" %>
   
-  <%#= ユーザーが他のユーザー(フォロワー)をunfollowした場合 %>
-  <% if current_user.id == activity_feed.user_id %>
+  <%#= 自分が他のユーザーをunfollowした場合 %>
+  <% if current_user == activity_feed.user %>
     <%= link_to 'You', user_path(current_user) %> unfollowed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %><br />
     <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
   
   <%#= フォロワーが誰かをunfollowした場合 %>
   <% else %>
   
-    <%#= フォロワーがユーザーをunfollowした場合 %>
-    <% if current_user.id == activity_feed.passive_user_id %>
+    <%#= フォロワーもしくは他のユーザーが自分をunfollowした場合 %>
+    <% if current_user == activity_feed.passive_user %>
       <%= link_to 'You', user_path(current_user) %> were unfollowed by <%= link_to activity_feed.user.name, user_path(activity_feed.user) %><br />
       <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
       
-    <%#= フォロワーが誰かをunfollowした場合 %>
+    <%#= フォロワーが他のユーザーもしくあ他のユーザーがフォロワーをunfollowした場合 %>
     <% else %>
       <%= link_to activity_feed.user.name, user_path(activity_feed.user) %> unfollowed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %>
       <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
@@ -51,8 +51,8 @@
 <%#= アクションがその他、つまり"learned"の場合 %>
 <% else %>
 
-  <%#= ユーザーがlearnした場合 %>
-  <% if current_user.id == activity_feed.user_id %>
+  <%#= 自分がlearnした場合 %>
+  <% if current_user == activity_feed.user %>
     <%= link_to 'You', user_path(current_user) %> learned <%= activity_feed.answer_count %> of <%= activity_feed.count %> in <%= link_to activity_feed.category.title, category_path(activity_feed.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: current_user.id, category_id: activity_feed.category_id)), class: "activity-result" %><br />
     <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
  
