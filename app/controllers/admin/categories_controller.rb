@@ -35,7 +35,12 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    Category.find(params[:id]).destroy
+    @category = Category.find(params[:id])
+    @activities = Activity.where('category_id = ?', params[:id])
+    @activities.destroy_all
+    @lessons = Lesson.where('category_id = ?', params[:id])
+    @lessons.destroy_all
+    @category.destroy
     flash[:success] = "Category deleted"
     redirect_to admin_categories_url
   end
@@ -46,3 +51,4 @@ class Admin::CategoriesController < ApplicationController
       params.require(:category).permit(:title, :description)
     end
 end
+

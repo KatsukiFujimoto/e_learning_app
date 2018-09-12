@@ -17,6 +17,10 @@ class Admin::WordsController < ApplicationController
     @category = Category.find(params[:category_id])
     @word = @category.words.new(word_params)
     if @word.save
+      @activities = Activity.where('category_id = ?', @category.id)
+      @activities.destroy_all
+      @lessons = Lesson.where('category_id = ?', @category.id)
+      @lessons.destroy_all
       flash[:success] = "words and answers have been created"
       redirect_to admin_category_words_url(@category)
     else
@@ -32,6 +36,10 @@ class Admin::WordsController < ApplicationController
     @category = Category.find(params[:category_id])
     @word = Word.find(params[:id])
     if @word.update_attributes(word_params)
+      @activities = Activity.where('category_id = ?', @category.id)
+      @activities.destroy_all
+      @lessons = Lesson.where('category_id = ?', @category.id)
+      @lessons.destroy_all
       flash[:success] = "Word and Answers updated"
       redirect_to admin_category_words_url(@category)
     else 
@@ -41,6 +49,10 @@ class Admin::WordsController < ApplicationController
   
   def destroy 
     @category = Category.find(params[:category_id])
+    @activities = Activity.where('category_id = ?', @category.id)
+    @activities.destroy_all
+    @lessons = Lesson.where('category_id = ?', @category.id)
+    @lessons.destroy_all
     Word.find(params[:id]).destroy
     flash[:success] = "Word and Answers deleted"
     redirect_to admin_category_words_url(@category)
