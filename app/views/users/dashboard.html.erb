@@ -12,11 +12,16 @@
       <%= render 'shared/stats' %>
     </section>
     <section>
-      <a href="/learned-categories" class="categories-learned"><%= pluralize(@category_count, "category") %> learned</a>
-      <a href="/learned-words" class="words-learned"><%= pluralize(@word_count, "word") %> learned</a>
+      <%= link_to "#{ pluralize(@category_count, "category") } learned", learned_categories_path, class: "categories-learned" %>
+      <%= link_to "#{ pluralize(@word_count, "word") } learned", learned_words_path, class: "words-learned" %>
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+    <div class="activity-container">
+      <h2 class="margin-top-zero">Activities</h2>
+      <%= render partial: 'users/activity_feed', collection: @activities %>
+    </div>
+    <%= will_paginate @activities %>
+  </div>
   </div>
 </div>

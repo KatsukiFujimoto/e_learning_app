@@ -312,6 +312,26 @@ div.activity-container {
 
 .margin-top-zero {
   margin-top: 0;
+  padding-top: 20px;
+  font-size: 3rem;
+}
+
+div.one-activity {
+  padding: 20px 40px 20px;
+  position: relative;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+span.time-ago {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}
+
+.activity-result {
+  position: absolute;
+  top: 60px;
+  right: 40px;
 }
 
 

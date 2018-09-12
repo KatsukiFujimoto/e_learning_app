@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       lesson.category.words.count == lesson.lesson_words.count 
     end 
     @category_count = @finished_lessons.count
+    @activities = @user.activity_feed.paginate(page: params[:page])
   end 
   
   def category 

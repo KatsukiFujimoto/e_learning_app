@@ -8,15 +8,14 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
+      <%= render 'follow_form' if logged_in? %>
     </section>
     <section>
-      <p class="categories-learned"><%= pluralize(@category_count, "category") %> learned</p>
-      <p class="words-learned"><%= pluralize(@word_count, "word") %> learned</p>
+      <%= link_to "#{ pluralize(@category_count, "category") } learned", learned_categories_path, class: "categories-learned" %>
+      <%= link_to "#{ pluralize(@word_count, "word") } learned", learned_words_path, class: "words-learned" %>
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <%= will_paginate @activities %>
     <div class="activity-container">
       <h2 class="margin-top-zero">Activities</h2>
       <%= render partial: 'users/activity', collection: @activities %>

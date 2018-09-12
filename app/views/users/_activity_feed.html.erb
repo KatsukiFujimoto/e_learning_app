@@ -1,0 +1,47 @@
+<div class="one-activity">
+  <%= gravatar_for @user %>
+  
+<%#= 前提として、ユーザーは自分のダッシュボードしか見れない %>
+<%#= Activityモデルのaction_typeが"followed"の場合 %>
+<% if activity_feed.action_type == "followed" %>
+  
+  <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
+  <% if current_user.id == activity_feed.user_id %>
+    <%= link_to 'You', user_path(current_user) %> followed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+  
+  <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+  <% else %>
+    <%= link_to 'You', user_path(current_user) %> were followed by <%= link_to activity_feed.user.name, user_path(activity_feed.user) %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+  <% end %>
+
+<%#= Activityモデルのaction_typeが"unfollowed"の場合 %>
+<% elsif activity_feed.action_type == "unfollowed" %>
+  
+  <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
+  <% if current_user.id == activity_feed.user_id %>
+    <%= link_to 'You', user_path(current_user) %> unfollowed <%= link_to activity_feed.passive_user.name, user_path(activity_feed.passive_user) %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+  
+  <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+  <% else %>
+    <%= link_to 'You', user_path(current_user) %> were unfollowed by <%= link_to activity_feed.user.name, user_path(activity_feed.user) %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+  <% end %>
+
+<%#= Activityモデルのaction_typeがその他、つまり"learned"の場合 %>
+<% else %>
+
+  <%#= ユーザーが他のユーザーにアクションを起こした場合 %>
+  <% if current_user.id == activity_feed.user_id %>
+    <%= link_to 'You', user_path(@user) %> learned <%= activity_feed.answer_count %> of <%= activity_feed.count %> in <%= link_to activity_feed.category.title, category_path(activity_feed.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: @user.id, category_id: activity_feed.category_id)), class: "activity-result" %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+ 
+  <%#= 他のユーザーがユーザーにアクションを起こした場合 %>
+  <% else %>
+    <%= link_to activity_feed.user.name, user_path(activity_feed.user) %> learned <%= activity_feed.answer_count %> of <%= activity_feed.count %> in <%= link_to activity_feed.category.title, category_path(activity_feed.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: @user.id, category_id: activity_feed.category_id)), class: "activity-result" %><br />
+    <span class="time-ago"><%= time_ago_in_words(activity_feed.created_at) %> ago</span><br />
+  <% end %>
+<% end %>
+</div>
