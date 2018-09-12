@@ -70,7 +70,7 @@
  
   <%#= ユーザーが自分のページを見ている場合 %>
   <% if current_user == @user %>
-    <%= link_to 'You', user_path(@user) %> learned <%= activity.answer_count %> of <%= activity.count %> in <%= link_to activity.category.title, category_path(activity.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: @user.id, category_id: activity.category_id)), class: "activity-result" %><br />
+    <%= link_to 'You', user_path(@user) %> learned <%= activity.answer_count %> of <%= activity.count %> in <%= link_to activity.category.title, category_path(activity.category) %><%= link_to 'Result', lesson_path(Lesson.find_by(user_id: current_user.id, category_id: activity.category_id)), class: "activity-result" %><br />
     <span class="time-ago"><%= time_ago_in_words(activity.created_at) %> ago</span><br />
 
   <%#= ユーザーが他のユーザーのページを見ている場合 %>

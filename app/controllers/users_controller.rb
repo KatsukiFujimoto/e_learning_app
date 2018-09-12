@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end 
   
   def category 
-    @user = current_user
+    @user = User.find(params[:id])
     @lessons = @user.lessons 
     @finished_lessons = @lessons.select do |lesson|
       lesson.category.words.count == lesson.lesson_words.count 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end 
   
   def word 
-    @user = current_user 
+    @user = User.find(params[:id])
     @lesson_words = @user.lesson_words.paginate(page: params[:page])
   end 
   

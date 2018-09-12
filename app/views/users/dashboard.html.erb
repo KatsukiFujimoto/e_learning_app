@@ -12,8 +12,8 @@
       <%= render 'shared/stats' %>
     </section>
     <section>
-      <%= link_to "#{ pluralize(@category_count, "category") } learned", learned_categories_path, class: "categories-learned" %>
-      <%= link_to "#{ pluralize(@word_count, "word") } learned", learned_words_path, class: "words-learned" %>
+      <%= link_to "#{ pluralize(@category_count, "category") } learned", category_user_path(current_user), class: "categories-learned" %>
+      <%= link_to "#{ pluralize(@word_count, "word") } learned", word_user_path(current_user), class: "words-learned" %>
     </section>
   </aside>
   <div class="col-md-8">

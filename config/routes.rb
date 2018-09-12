@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy, :new, :create] do
     member do
       get :following, :followers
+      get :category, :word
     end
   end
   resources :relationships, only: [:create, :destroy]
