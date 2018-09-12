@@ -15,8 +15,12 @@
     <%= f.hidden_field :category_id, value: category.id %>
     <% if @existing_lesson && @count != @answer_count %>
       <%= f.submit 'Start from where you left last time', class: "middle-btn" %>
+      <%= link_to 'Wanna go over this lesson from the beginning?', lesson_path(@existing_lesson), method: :delete,
+        data: { confirm: 'Are you sure?' } %>
     <% elsif @existing_lesson %>
       <%= f.submit 'Result', class: "result-btn" %>
+      <%= link_to 'Wanna delete the result and restart this lesson?', lesson_path(@existing_lesson), method: :delete,
+        data: { confirm: "You'll lose the result in this lesson. Are you sure?" } %>
     <% else %>
       <%= f.submit 'Learn', class: "start-btn" %>
     <% end %>

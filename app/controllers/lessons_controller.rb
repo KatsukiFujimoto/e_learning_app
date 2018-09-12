@@ -30,6 +30,15 @@ class LessonsController < ApplicationController
     @correct_count = @lesson.word_answers.where("correct = ?", true).count
   end 
   
+  def destroy 
+    @lesson = Lesson.find(params[:id]) 
+    @activity = Activity.find_by(user_id: current_user.id, category_id: @lesson.category_id)
+    @activity.destroy if @activity
+    @lesson.destroy 
+    flash[:success] = "The lesson deleted, you can restart it from the beginning"
+    redirect_to categories_path
+  end 
+  
   
   private 
   
