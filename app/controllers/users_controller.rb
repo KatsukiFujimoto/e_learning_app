@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index 
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end 
     @category_count = @finished_lessons.count
     #@pre_activities = @user.activities + Activity.where("passive_user_id = ?", @user.id)
-    @activities = @user.show_activity.paginate(page: params[:page])
+    @activities = @user.show_activity.paginate(page: params[:page], per_page: 15)
     #@activities = @pre_activities.paginate(page: params[:page])
   end
   
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       lesson.category.words.count == lesson.lesson_words.count 
     end 
     @category_count = @finished_lessons.count
-    @activities = @user.activity_feed.paginate(page: params[:page])
+    @activities = @user.activity_feed.paginate(page: params[:page], per_page: 15)
   end 
   
   def category 
